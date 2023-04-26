@@ -1,0 +1,42 @@
+.cartEmpty {
+    text-align: center;
+  
+    .box {
+      align-self: center;
+    }
+  
+    p {
+      width: 280px;
+      line-height: 24px;
+    }
+  
+    .greenButton {
+      width: 245px;
+      margin-top: 20px;
+      height: 55px;
+      background: #a30449;
+      border-radius: 18px;
+      border: 0;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+    
+  
+      &:hover {
+        img {
+          transform: rotate(180deg) translateX(3px);
+        }
+      }
+  
+      img {
+        position: relative;
+        top: 1px;
+        transform: rotate(180deg);
+        margin-right: 15px;
+        transition: transform 0.15s ease-in-out;
+      }
+    }
+  }
+  
