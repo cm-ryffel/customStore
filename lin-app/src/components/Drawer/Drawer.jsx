@@ -4,7 +4,11 @@ import axios from "axios";
 import styles from "./Drawer.module.scss";
 
 import Info from "../Info/Info";
+
 import { useCart } from "../../hooks/useCart";
+
+import { ordersLink, cartLink } from "../../links";
+
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -18,7 +22,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
     try {
       setIsLoading(true);
       const { data } = await axios.post(
-        "https://6368f2a128cd16bba710a546.mockapi.io/orders",
+        ordersLink,
         { items: cartItems }
       );
       setOoredId(data.id);
@@ -28,7 +32,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
         await axios.delete(
-          `https://6368f2a128cd16bba710a546.mockapi.io/cart/` + item.id
+          `${cartLink}/` + item.id
         );
         setCartItems((prev) =>
           prev.filter((item) => Number(item.id) !== Number(item.id))

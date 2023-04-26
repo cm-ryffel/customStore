@@ -1,4 +1,5 @@
 import React from "react";
+
 import AppContext from "../../context";
 
 import styles from "./Info.module.scss";

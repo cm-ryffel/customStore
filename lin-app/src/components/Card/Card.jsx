@@ -1,5 +1,6 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
+
 import styles from "./Card.module.scss";
 
 import AppContext from "../../context";

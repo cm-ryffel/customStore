@@ -1,13 +1,18 @@
 import React from "react";
+
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
+import AppContext from "./context";
+
 import Header from "./components/Header/Header";
 import Drawer from "./components/Drawer/Drawer";
 import Home from "./pages/Home/Home";
 import Favorites from "./pages/Favorites";
-import AppContext from "./context";
 import Orders from "./pages/Orders";
 import Footer from "./components/Footer/Footer";
+
+import { cartLink, itemsLink, favoritesLink } from "./links";
+
 
 
 function App() {
@@ -20,15 +25,9 @@ function App() {
 
   React.useEffect(() => {
     async function fetchData() {
-      const itemsResp = await axios.get(
-        "https://6368f2a128cd16bba710a546.mockapi.io/items"
-      );
-      const cartResp = await axios.get(
-        "https://6368f2a128cd16bba710a546.mockapi.io/cart"
-      );
-      const favResp = await axios.get(
-        "https://6368f2a128cd16bba710a546.mockapi.io/favorites"
-      );
+      const itemsResp = await axios.get(itemsLink);
+      const cartResp = await axios.get(cartLink);
+      const favResp = await axios.get(favoritesLink);
 
       setIsLoading(false);
       setCartItems(cartResp.data);
@@ -43,21 +42,19 @@ function App() {
     console.log(obj);
 
     if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-      axios.delete(
-        `https://6368f2a128cd16bba710a546.mockapi.io/cart/${obj.id}`
-      );
+      axios.delete(`${cartLink}/${obj.id}`);
       setCartItems((prev) =>
         prev.filter((item) => Number(item.id) !== Number(obj.id))
       );
     } else {
-      axios.post("https://6368f2a128cd16bba710a546.mockapi.io/cart", obj);
+      axios.post(cartLink, obj);
       setCartItems((prev) => [...prev, obj]);
     }
   };
 
   const onRemoveItem = (id) => {
     console.log(id);
-    axios.delete(`https://6368f2a128cd16bba710a546.mockapi.io/cart/${id}`);
+    axios.delete(`${cartLink}/${id}`);
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
@@ -68,17 +65,12 @@ function App() {
   const onAddToFavorite = async (obj) => {
     try {
       if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
-        axios.delete(
-          `https://6368f2a128cd16bba710a546.mockapi.io/favorites/${obj.id}`
-        );
+        axios.delete(`${favoritesLink}/${obj.id}`);
         setFavorites((prev) =>
           prev.filter((item) => Number(item.id) !== Number(obj.id))
         );
       } else {
-        const { data } = await axios.post(
-          "https://6368f2a128cd16bba710a546.mockapi.io/favorites",
-          obj
-        );
+        const { data } = await axios.post(favoritesLink,obj);
         setFavorites((prev) => [...prev, data]);
       }
     } catch (error) {

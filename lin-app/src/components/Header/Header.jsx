@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 
 import styles from "./Header.module.scss"
@@ -12,9 +13,9 @@ function Header(props) {
     <header className="d-flex justify-between align-center p-40">
       <Link to="/">
         <div className="d-flex align-center">
-          <img
-            width={40}
-            height={40}
+          <img className={styles.round}
+            width={80}
+            height={80}
             src="/img/satanLinPhoto/logo.jpg"
             alt="Logo"
           />

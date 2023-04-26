@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap");
+
+.footer{
+  .footerWrapper{
+    text-align: center;
+    margin-top: 40px;
+    // margin-bottom: 200px;
+    color: #fff;
+  
+      .NastyWrapper{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        overflow: hidden;
+  
+          .footerMain{
+            font-family: "Bruno Ace", cursive;
+            font-size: 64px;
+          }
+  
+          .animate__animated.animate__pulse{
+            --animate-duration: 2s;
+          }
+  
+          li{
+          }
+      }
+  
+  
+      .linksList{
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+        font-size: 40px;
+
+          a{
+            text-decoration: none;
+            color:#fff;
+          }
+      }
+  }
+  
+}
+
+
+
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.blink {
+  animation: blink 1s step-start 0s infinite;
+  -webkit-animation: blink 1s step-start 0s infinite;
+}

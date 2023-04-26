@@ -1,7 +1,12 @@
 import React from "react";
+
 import Card from "../components/Card/Card";
+
 import axios from "axios";
 import AppContext from "../context";
+
+import { ordersLink } from "../links";
+
 
 function Orders() {
   const { onAddToFavorite, onAddToCart } = React.useContext(AppContext);
@@ -12,7 +17,7 @@ function Orders() {
     (async () => {
       try {
         const { data } = await axios.get(
-          "https://6368f2a128cd16bba710a546.mockapi.io/orders"
+          ordersLink
         );
         // console.log(data.map(obj => obj.items).flat());
         setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []));
